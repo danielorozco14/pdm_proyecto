@@ -11,6 +11,8 @@
             android:theme="@style/AppTheme">
         <activity android:name=".registrar">
         </activity>
+        <activity android:name=".BeSafe">
+        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

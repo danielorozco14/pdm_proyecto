@@ -8,13 +8,15 @@
         tools:context=".RegistroActivity">
 
     <EditText
-            android:layout_width="300dp" android:layout_height="wrap_content"
+            android:layout_width="350dp" android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="164dp" app:layout_constraintHorizontal_bias="0.495"
             android:hint="Ingrese su correo electronico" android:id="@+id/correo_registro"/>
 
-    <EditText android:layout_width="300dp" android:layout_height="wrap_content"
+    <EditText android:layout_width="350dp" android:layout_height="wrap_content"
+              android:inputType="textPassword"
               app:layout_constraintEnd_toEndOf="parent"
               app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
               android:layout_marginTop="284dp" app:layout_constraintHorizontal_bias="0.495"

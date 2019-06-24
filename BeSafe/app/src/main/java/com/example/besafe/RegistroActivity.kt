@@ -8,7 +8,7 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_registrar.*
 
-class registrar : AppCompatActivity() {
+class RegistroActivity : AppCompatActivity() {
 
     var mAuth = FirebaseAuth.getInstance()
 
@@ -16,8 +16,6 @@ class registrar : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registrar)
         registra()
-
-
     }
 
     private fun registra() {

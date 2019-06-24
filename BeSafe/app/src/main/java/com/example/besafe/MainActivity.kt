@@ -28,23 +28,21 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
     private fun logea() {
 
         login.setOnClickListener {
             var txtemail = email.text.toString()
             var txtpassword = password.text.toString()
-            if (!txtemail.isEmpty() && !txtpassword.isEmpty()) {
-               mAuth.signInWithEmailAndPassword(txtemail, txtpassword)
-                    .addOnCompleteListener(this) {
-                        if (it.isSuccessful) {
-                            startActivity(Intent(this, BeSafe::class.java))
-                            Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show()
-                        } else {
-                            Toast.makeText(this, "Error logging in", Toast.LENGTH_LONG).show()
-                        }
-                    }
+
+            mAuth.signInWithEmailAndPassword(txtemail, txtpassword).addOnCompleteListener (this){
+                if (it.isSuccessful) {
+                    startActivity(Intent(this, BeSafe::class.java))
+                    Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Error logging in", Toast.LENGTH_LONG).show()
+                }
             }
+
         }
     }
 }

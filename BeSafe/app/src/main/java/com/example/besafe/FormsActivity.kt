@@ -100,6 +100,7 @@ class FormsActivity : AppCompatActivity() {
          })
     }
 
+    //TODO ESTA SE IMPLEMENTA EN onStart() para que funcione
     fun loadRealTimeInfo(){
         var mDocRef= db.document("users/persona_1")
         mDocRef.addSnapshotListener(this,EventListener<DocumentSnapshot>{

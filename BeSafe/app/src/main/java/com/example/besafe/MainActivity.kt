@@ -31,18 +31,22 @@ class MainActivity : AppCompatActivity() {
     private fun logea() {
 
         login.setOnClickListener {
-            var txtemail = email.text.toString()
-            var txtpassword = password.text.toString()
+            if (!email.text.isEmpty() && !password.text.isEmpty()) {
+                var txtemail = email.text.toString()
+                var txtpassword = password.text.toString()
 
-            mAuth.signInWithEmailAndPassword(txtemail, txtpassword).addOnCompleteListener (this){
-                if (it.isSuccessful) {
-                    startActivity(Intent(this, BeSafe::class.java))
-                    Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show()
-                } else {
-                    Toast.makeText(this, "Error logging in", Toast.LENGTH_LONG).show()
+                mAuth.signInWithEmailAndPassword(txtemail, txtpassword).addOnCompleteListener(this) {
+                    if (it.isSuccessful) {
+                        startActivity(Intent(this, BeSafe::class.java))
+                        Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(this, "Error logging in", Toast.LENGTH_LONG).show()
+                    }
                 }
-            }
 
+            }else{
+                Toast.makeText(this,"Please fill all spaces",Toast.LENGTH_LONG).show()
+            }
         }
     }
 }

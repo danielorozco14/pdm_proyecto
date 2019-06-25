@@ -7,44 +7,47 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import kotlinx.android.synthetic.main.activity_main.*
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.besafe.adapters.firestoreAdapter.FirestoreUsersAdapter
 import com.example.besafe.data.entities.Users
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
+
 import com.google.firebase.firestore.*
-import kotlinx.android.synthetic.main.activity_forms.*
-import kotlinx.android.synthetic.main.cv_form_list_item.*
+
 
 
 /**
  * YA FUNCIONA LA OBTENCION DE DATOS EN TIEMPO REAL, AUNQUE SOLO PARA UN DOCUMENTO ESPECIFICO DE LA COLECCION
- * PARA PROBARLO, LUEGO DE QUE INICIE LA APLICACION VAN A LA CONSOLO DE FIRESTORE Y CAMBIAN LOS VALORES DE EL DOCUMENTO "INFO"
+ * PARA PROBARLO, LUEGO DE QUE INICIE LA APLICACION VAN A LA CONSOLA DE FIRESTORE Y CAMBIAN LOS VALORES DE EL DOCUMENTO "INFO"
  */
 class FormsActivity : AppCompatActivity() {
     val TAG= "FIRESTORE"
     var db = FirebaseFirestore.getInstance()
     lateinit var Doc:String
-    private var adapter :UsersFirestoreRecyclerAdapter?=null
+    var cont=2//CONTADOR QUE SIRVE PARA INDEXAR EL DOCUMENTO, NOS SERA MAS FACIL OBTENER UN DOCUMENTO ESPECIFICO SI SABEMOS QUE NUMERO TIENE AL FINAL
+    //private var adapter :UsersFirestoreRecyclerAdapter?=null
+    lateinit var adapter :FirestoreUsersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forms)
 
+        addInfo()
 
         var recycler_view =  findViewById<RecyclerView>(R.id.rv_forms)
 
         recycler_view.layoutManager=LinearLayoutManager(this)
         val query = db.collection("users").orderBy("first",Query.Direction.DESCENDING)
         val options = FirestoreRecyclerOptions.Builder<Users>().setQuery(query,Users::class.java).build()
-        adapter = UsersFirestoreRecyclerAdapter(options)
+        //adapter = UsersFirestoreRecyclerAdapter(options)
+        adapter = FirestoreUsersAdapter(options)
         recycler_view.adapter=adapter
 
 
-        //addInfo()
+
         //loadInfo()
 
     }
@@ -62,16 +65,17 @@ class FormsActivity : AppCompatActivity() {
         }
     }
     fun addInfo(){
+        cont++
         val user = hashMapOf(
-            "first" to "Leonardo",
-            "last" to "Rostov",
-            "born" to 1999
+            "first" to "Raymon",
+            "last" to "Reddington",
+            "born" to 1957
         )
         //SI SE USA ADD() FIRESTORE GENERA EL PROPIO ID DE EL DOCUMENTO, USANDO .DOCUMENT() Y SET() LO DEFINIMOS NOSOTROS
         //TODO TAL VEZ TENGA QUE REGRESAR ESTO A ADD() PARA QUE FUNCIONE EL RECYCLER VIEW
 
         db.collection("users")
-            .document("persona_1")//ID DEL DOCUMENTO
+            .document("persona_${cont}")//ID DEL DOCUMENTO
             .set(user)
             .addOnSuccessListener { documentReference ->
                 Log.d(TAG, "DocumentSnapshot added ")
@@ -117,7 +121,7 @@ class FormsActivity : AppCompatActivity() {
     }
 
 
-    private inner class UsersViewHolder internal constructor(private val view: View):RecyclerView.ViewHolder(view){
+    /**private inner class UsersViewHolder internal constructor(private val view: View):RecyclerView.ViewHolder(view){
         internal fun setUsersData(first:String,last:String,born:Int){
             val textView1= view.findViewById<TextView>(R.id.text_Test1)
             textView1.text=first
@@ -138,7 +142,7 @@ class FormsActivity : AppCompatActivity() {
         override fun onBindViewHolder(p0: UsersViewHolder, p1: Int, p2: Users) {
             p0.setUsersData(p2.first,p2.last,p2.born)
         }
-    }
+    }**/
 
 
 }

@@ -1,10 +1,7 @@
 package com.example.besafe
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.example.besafe.data.entities.Test
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -24,7 +21,7 @@ class BeSafe : AppCompatActivity() {
 
 
         boton_enviar.setOnClickListener {
-            var test= Test(palabra_text.text.toString())
+            var test:Map<String,Any> = mapOf(("word" to "Hola"))
             //val myMap = mapOf<String,Object>("word" to test)
             palabra.add(test)
         }

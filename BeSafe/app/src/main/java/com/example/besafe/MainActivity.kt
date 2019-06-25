@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
             mAuth.signInWithEmailAndPassword(txtemail, txtpassword).addOnCompleteListener (this){
                 if (it.isSuccessful) {
-                    startActivity(Intent(this, BeSafe::class.java))
+                    startActivity(Intent(this, FormsActivity::class.java))
                     Toast.makeText(this, "Logged in", Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(this, "Error logging in", Toast.LENGTH_LONG).show()

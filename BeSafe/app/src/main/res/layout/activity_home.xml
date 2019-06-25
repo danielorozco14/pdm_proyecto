@@ -6,8 +6,22 @@
               android:layout_height="match_parent">
 
     <TextView
+
             android:text="HOLA MUNDO"
             android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" android:id="@+id/textView"/>
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"/>
+
+    <EditText android:layout_width="240dp" android:layout_height="wrap_content"
+              android:hint="Ingresa una palabra"
+              android:id="@+id/palabra_text"
+    />
+
+    <Button
+            android:id="@+id/boton_enviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+    />
 </LinearLayout>

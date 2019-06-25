@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.cv_form_list_item.*
 
 /**
  * YA FUNCIONA LA OBTENCION DE DATOS EN TIEMPO REAL, AUNQUE SOLO PARA UN DOCUMENTO ESPECIFICO DE LA COLECCION
+ * PARA PROBARLO, LUEGO DE QUE INICIE LA APLICACION VAN A LA CONSOLO DE FIRESTORE Y CAMBIAN LOS VALORES DE EL DOCUMENTO "INFO"
  */
 class FormsActivity : AppCompatActivity() {
     val TAG= "FIRESTORE"
@@ -24,15 +25,13 @@ class FormsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.cv_form_list_item)
-
-
-        val TAG="/D"
-        // Add a new document with a generated ID
-
-
-
         addInfo()
         loadInfo()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        loadRealTimeInfo()
     }
 
     fun addInfo(){
@@ -43,10 +42,9 @@ class FormsActivity : AppCompatActivity() {
         )
         //SI SE USA ADD() FIRESTORE GENERA EL PROPIO ID DE EL DOCUMENTO, USANDO .DOCUMENT() Y SET() LO DEFINIMOS NOSOTROS
         db.collection("users")
-            .document("info")
+            .document("info")//ID DEL DOCUMENTO
             .set(user)
             .addOnSuccessListener { documentReference ->
-
                 Log.d(TAG, "DocumentSnapshot added ")
             }
             .addOnFailureListener { e ->
@@ -88,10 +86,7 @@ class FormsActivity : AppCompatActivity() {
         })
     }
 
-    override fun onStart() {
-        super.onStart()
-        loadRealTimeInfo()
-    }
+
 
 
 }

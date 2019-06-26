@@ -1,6 +1,7 @@
 package com.example.besafe
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
@@ -41,6 +42,7 @@ class FormsActivity : AppCompatActivity() {
     lateinit var adapter: FirestoreUsersAdapter
 
 
+    var mAuth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,9 +56,6 @@ class FormsActivity : AppCompatActivity() {
         setSupportActionBar(maintoolbar as Toolbar?)
 
         addInfo()
-
-        var mAuth = FirebaseAuth.getInstance()
-
 
         var recycler_view = findViewById<RecyclerView>(R.id.rv_forms)
 
@@ -116,6 +115,12 @@ class FormsActivity : AppCompatActivity() {
     }
 
     fun addInfo() {
+<<<<<<< HEAD
+=======
+        cont++
+
+        fun addInfo() {
+>>>>>>> 34498980cc7f3356a74d23857c400951f7b1741e
 
 
        val user = hashMapOf(
@@ -205,6 +210,10 @@ class FormsActivity : AppCompatActivity() {
         if (item != null) {
             when (item.itemId) {
                 R.id.borrar -> Toast.makeText(this, "borrar", Toast.LENGTH_LONG).show()
+                R.id.logout -> {
+                    mAuth.signOut()
+                    startActivity(Intent(this, MainActivity::class.java))
+                }
             }
         }
         return super.onOptionsItemSelected(item)

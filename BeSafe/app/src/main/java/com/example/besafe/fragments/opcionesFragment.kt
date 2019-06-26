@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -61,4 +62,31 @@ class opcionesFragment : Fragment() {
             Adapter.stopListening()
         }**/
     }
+
+    //TODO QUIZAS HACER ESTO EN EL FORMSACTIVITY
+
+    fun clickListeners(view : View){
+
+        var fragment=fragmentManager
+        var transaction= fragment?.beginTransaction()
+
+        var opcion_1=view.findViewById<CardView>(R.id.opcion1)
+        var opcion_2=view.findViewById<CardView>(R.id.opcion2)
+        var opcion_3=view.findViewById<CardView>(R.id.opcion3)
+        var opcion_4=view.findViewById<CardView>(R.id.opcion4)
+
+        opcion_1.setOnClickListener {
+            val fragmentManager = supportFragmentManager
+            val transaction = fragmentManager.beginTransaction()
+            val fragment = opcionesFragment()
+            transaction.add(R.id.fragment_container, fragment)
+            transaction.commit()
+
+        }
+
+
+
+    }
+
+
 }

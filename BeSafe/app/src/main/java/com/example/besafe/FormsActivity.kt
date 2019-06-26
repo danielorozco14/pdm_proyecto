@@ -1,33 +1,33 @@
 package com.example.besafe
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.besafe.adapters.firestoreAdapter.FirestoreUsersAdapter
-
 import com.example.besafe.data.entities.FormQ
 import com.example.besafe.data.entities.Question
-
 import com.example.besafe.data.entities.Users
+<<<<<<< HEAD
 import com.example.besafe.fragments.opcionesFragment
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
+=======
+>>>>>>> 196f5069505c8bdd42a75b3d0324dc13e40b9bee
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.OnCompleteListener
-
-
-
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-
-import com.google.firebase.firestore.*
-
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_forms.*
 
 
 /**
@@ -48,11 +48,33 @@ class FormsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+<<<<<<< HEAD
         setContentView(R.layout.opciones_fragment)
 
         showOpcionesFragment()
 
         var mAuth = FirebaseAuth.getInstance()
+=======
+        setContentView(R.layout.activity_forms)
+        setSupportActionBar(maintoolbar as Toolbar?)
+
+        addInfo()
+
+        var mAuth = FirebaseAuth.getInstance()
+
+
+        var recycler_view = findViewById<RecyclerView>(R.id.rv_forms)
+
+
+        recycler_view.layoutManager = LinearLayoutManager(this)
+        val query = db.collection("users").orderBy("first", Query.Direction.DESCENDING)
+        val options = FirestoreRecyclerOptions.Builder<Users>().setQuery(query, Users::class.java).build()
+        //adapter = UsersFirestoreRecyclerAdapter(options)
+        adapter = FirestoreUsersAdapter(options)
+        recycler_view.adapter = adapter
+
+
+>>>>>>> 196f5069505c8bdd42a75b3d0324dc13e40b9bee
         var uidtoken = mAuth.currentUser?.uid.toString()
 
         val formQ = FormQ(uidtoken, 10)
@@ -177,5 +199,20 @@ class FormsActivity : AppCompatActivity() {
         val fragment = opcionesFragment()
         transaction.add(fragment,"FRAGMENT1")
             .commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        var menuInflater = menuInflater
+        menuInflater.inflate(R.menu.menuforms, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item != null) {
+            when (item.itemId) {
+                R.id.borrar -> Toast.makeText(this, "borrar", Toast.LENGTH_LONG).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

@@ -31,19 +31,15 @@ class opcionesFragment : Fragment() {
 
 
         var recyclerView= view.findViewById<RecyclerView>(R.id.rv_fragmentOptions)
-        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        val query = db.collection("users").orderBy("born", Query.Direction.DESCENDING)
+        val options = FirestoreRecyclerOptions.Builder<Users>()
+            .setQuery(query, Users::class.java)
+            .build()
+        //adapter = UsersFirestoreRecyclerAdapter(options)
+        Adapter = FirestoreUsersAdapter(options)
+        recyclerView.adapter=Adapter
 
-        if(context!=null){
-            val query = db.collection("users").orderBy("born", Query.Direction.DESCENDING)
-            val options = FirestoreRecyclerOptions.Builder<Users>()
-                .setQuery(query, Users::class.java)
-                .build()
-            //adapter = UsersFirestoreRecyclerAdapter(options)
-            Adapter = FirestoreUsersAdapter(options)
-
-            recyclerView.layoutManager = LinearLayoutManager(context)
-            recyclerView.adapter=Adapter
-        }
         Log.d("FIRESTORE","SE CREO EL FRAGMENTO")
         return view
     }

@@ -15,18 +15,14 @@ import com.example.besafe.adapters.firestoreAdapter.FirestoreUsersAdapter
 import com.example.besafe.data.entities.FormQ
 import com.example.besafe.data.entities.Question
 import com.example.besafe.data.entities.Users
-<<<<<<< HEAD
+
 import com.example.besafe.fragments.opcionesFragment
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-=======
->>>>>>> 196f5069505c8bdd42a75b3d0324dc13e40b9bee
+
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.EventListener
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.*
 import kotlinx.android.synthetic.main.activity_forms.*
 
 
@@ -42,19 +38,18 @@ class FormsActivity : AppCompatActivity() {
     var cont=0 //CONTADOR QUE SIRVE PARA INDEXAR EL DOCUMENTO, NOS SERA MAS FACIL OBTENER UN DOCUMENTO ESPECIFICO SI SABEMOS QUE NUMERO TIENE AL FINAL
     var aux=loadInfo();
     //private var adapter :UsersFirestoreRecyclerAdapter?=null
-    //lateinit var adapter: FirestoreUsersAdapter
+    lateinit var adapter: FirestoreUsersAdapter
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-<<<<<<< HEAD
+
         setContentView(R.layout.opciones_fragment)
 
         showOpcionesFragment()
 
-        var mAuth = FirebaseAuth.getInstance()
-=======
+
         setContentView(R.layout.activity_forms)
         setSupportActionBar(maintoolbar as Toolbar?)
 
@@ -74,7 +69,6 @@ class FormsActivity : AppCompatActivity() {
         recycler_view.adapter = adapter
 
 
->>>>>>> 196f5069505c8bdd42a75b3d0324dc13e40b9bee
         var uidtoken = mAuth.currentUser?.uid.toString()
 
         val formQ = FormQ(uidtoken, 10)

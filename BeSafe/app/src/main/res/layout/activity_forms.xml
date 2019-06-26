@@ -14,17 +14,13 @@
                 layout="@layout/toolbar"
                 android:layout_height="wrap_content" android:layout_width="match_parent"/>
 
-<<<<<<< HEAD
+
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_forms"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-=======
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_forms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
->>>>>>> 196f5069505c8bdd42a75b3d0324dc13e40b9bee
+
+
 
         </androidx.recyclerview.widget.RecyclerView>
 

@@ -5,6 +5,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -15,6 +16,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -46,6 +48,18 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.android.support:design:28.0.0'
+<<<<<<< HEAD
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
+=======
+    implementation 'com.facebook.fresco:fresco:1.4.0'
+    implementation 'com.karumi:dexter:4.1.0'
+
+
+
+}
+
+repositories {
+    mavenCentral()
+>>>>>>> 486f61e0914552c99ae368fcfca0fe603481a48b
 }

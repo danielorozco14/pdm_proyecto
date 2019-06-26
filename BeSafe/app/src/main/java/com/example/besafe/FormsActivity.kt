@@ -1,32 +1,28 @@
 package com.example.besafe
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.example.besafe.adapters.firestoreAdapter.FirestoreUsersAdapter
-
 import com.example.besafe.data.entities.FormQ
 import com.example.besafe.data.entities.Question
-
 import com.example.besafe.data.entities.Users
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.gms.tasks.OnCompleteListener
-
-
-
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
-
-import com.google.firebase.firestore.*
-
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.EventListener
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_forms.*
 
 
 /**
@@ -49,7 +45,7 @@ class FormsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forms)
-
+        setSupportActionBar(maintoolbar as Toolbar?)
 
         addInfo()
 
@@ -65,7 +61,6 @@ class FormsActivity : AppCompatActivity() {
         //adapter = UsersFirestoreRecyclerAdapter(options)
         adapter = FirestoreUsersAdapter(options)
         recycler_view.adapter = adapter
-
 
 
         var uidtoken = mAuth.currentUser?.uid.toString()
@@ -203,5 +198,20 @@ class FormsActivity : AppCompatActivity() {
         }**/
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        var menuInflater = menuInflater
+        menuInflater.inflate(R.menu.menuforms, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item != null) {
+            when (item.itemId) {
+                R.id.borrar -> Toast.makeText(this, "borrar", Toast.LENGTH_LONG).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

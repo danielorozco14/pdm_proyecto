@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.besafe.fragments.opcionesFragment
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -49,4 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         }
     }
+   // showOpcionesFragment()
+
+
 }

@@ -23,6 +23,10 @@ class FirestoreUsersAdapter internal constructor(options: FirestoreRecyclerOptio
         p0.setUsersData(p2.first,p2.last,p2.born)
     }
 
+    override fun getItemCount(): Int {
+        return super.getItemCount()
+    }
+
 
     inner class UsersViewHolder internal constructor(private val view: View):RecyclerView.ViewHolder(view){
         internal fun setUsersData(first:String,last:String,born:Int){

@@ -3,4 +3,9 @@
     <color name="colorPrimary">#01579B</color>
     <color name="colorPrimaryDark">#E8025292</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="azulitoClaro">#4978B5</color>
+    <color name="azulRoyal">#00539CFF</color>
+    <color name="peach">#EEA47FFF</color>
+    <color name="electricBlue">#0063A4E7</color>
+    <color name="Aquamarine">#9CC3D5FF</color>
 </resources>

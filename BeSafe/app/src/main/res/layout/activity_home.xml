@@ -3,6 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:gravity="center"
+              android:background="@drawable/gradient"
               android:layout_height="match_parent">
 
     <TextView
@@ -11,11 +12,26 @@
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/cardview_light_background"
+            android:textColorHighlight="@color/cardview_light_background"
+            android:textColorHint="@color/cardview_light_background"
+            android:textColorLink="@color/cardview_light_background"
+            android:shadowColor="@color/cardview_shadow_start_color"
+            android:outlineAmbientShadowColor="@color/cardview_shadow_start_color"
+            android:outlineSpotShadowColor="@color/cardview_shadow_start_color"
             android:id="@+id/textView"/>
 
-    <EditText android:layout_width="240dp" android:layout_height="wrap_content"
-              android:hint="Ingresa una palabra"
-              android:id="@+id/palabra_text"
+    <EditText
+            android:layout_width="240dp" android:layout_height="wrap_content"
+            android:textColor="@color/cardview_light_background"
+            android:textColorHighlight="@color/cardview_light_background"
+            android:textColorHint="@color/cardview_light_background"
+            android:textColorLink="@color/cardview_light_background"
+            android:shadowColor="@color/cardview_shadow_start_color"
+            android:outlineAmbientShadowColor="@color/cardview_shadow_start_color"
+            android:outlineSpotShadowColor="@color/cardview_shadow_start_color"
+            android:hint="Ingresa una palabra"
+            android:id="@+id/palabra_text"
     />
 
     <Button

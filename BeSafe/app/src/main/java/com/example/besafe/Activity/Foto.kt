@@ -11,10 +11,12 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_foto.*
 import android.Manifest
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -27,7 +29,7 @@ import java.io.File
 
 class Foto : AppCompatActivity() {
 
-    private val TAKE_PHOTO_REQUEST = 101
+    private val TAKE_PHOTO_REQUEST = 1
     private var mCurrentPhotoPath: String = ""
 
 
@@ -36,7 +38,17 @@ class Foto : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_foto)
         btnfoto.setOnClickListener{permisos()}
+        Log.d("BMF",mCurrentPhotoPath)
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK && requestCode == TAKE_PHOTO_REQUEST) {
+
+
+            processCapturedPhoto()
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
 
     private fun permisos() {
@@ -81,6 +93,7 @@ class Foto : AppCompatActivity() {
             .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                 values)
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+
         if(intent.resolveActivity(packageManager) != null) {
             mCurrentPhotoPath = fileUri.toString()
             intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
@@ -92,7 +105,7 @@ class Foto : AppCompatActivity() {
 
     private fun processCapturedPhoto() {
         val cursor = contentResolver.query(Uri.parse(mCurrentPhotoPath),
-            Array(1) {android.provider.MediaStore.Images.ImageColumns.DATA},
+            Array(1) {MediaStore.Images.ImageColumns.DATA},
             null, null, null)
         cursor.moveToFirst()
         val photoPath = cursor.getString(0)
@@ -106,7 +119,11 @@ class Foto : AppCompatActivity() {
         val request = ImageRequestBuilder.newBuilderWithSource(uri)
             .setResizeOptions(ResizeOptions(width, height))
             .build()
-
+        val controller = Fresco.newDraweeControllerBuilder()
+            .setOldController(ivphoto.controller)
+            .setImageRequest(request)
+            .build()
+        ivphoto.controller = controller
     }
 
 

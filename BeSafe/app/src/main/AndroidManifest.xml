@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.example.besafe">
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -14,6 +14,9 @@
         <activity android:name=".RegistroActivity">
         </activity>
         <activity android:name=".BeSafe">
+        </activity>
+
+        <activity android:name=".Activity.Foto">
         </activity>
         <activity android:name=".MainActivity">
             <intent-filter>

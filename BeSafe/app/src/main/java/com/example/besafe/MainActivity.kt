@@ -1,12 +1,10 @@
 package com.example.besafe
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.Toast
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.auth.AuthResult
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,6 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         binder()
+        if (mAuth.currentUser!=null){
+            mAuth.currentUser?.let { mAuth.updateCurrentUser(it) }
+            startActivity(Intent(this, FormsActivity::class.java))
+        }
+
     }
 
     fun binder() {

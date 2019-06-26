@@ -6,16 +6,27 @@
         android:layout_width="match_parent"
         android:background="@drawable/gradient"
         android:orientation="vertical"
-        android:id="@+id/fragment_container"
+
          android:layout_height="match_parent"
         tools:context=".FormsActivity">
+
+
     <LinearLayout
-            android:orientation="vertical" android:layout_height="match_parent" android:layout_width="match_parent">
+            android:orientation="vertical" android:layout_height="wrap_content" android:layout_width="match_parent">
         <include
                 android:id="@+id/maintoolbar"
                 layout="@layout/toolbar"
-                android:layout_height="wrap_content" android:layout_width="match_parent"/>
+                android:layout_height="wrap_content" android:layout_width="match_parent" android:layout_weight="0"/>
     </LinearLayout>
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="10"
+            android:id="@+id/fragment_container">
+
+    </RelativeLayout>
 
 
 

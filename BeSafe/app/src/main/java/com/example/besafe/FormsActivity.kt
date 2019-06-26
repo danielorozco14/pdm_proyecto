@@ -50,14 +50,7 @@ class FormsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_forms)
         setSupportActionBar(maintoolbar as Toolbar?)
         //setContentView(R.layout.opciones_fragment)
-
-        val fragmentManager = supportFragmentManager
-        val transaction = fragmentManager.beginTransaction()
-        val fragment = opcionesFragment()
-        transaction.add(R.id.fragment_container, fragment)
-        transaction.commit()
-
-
+        showOpcionesFragment()
         addInfo()
         /**
         var recycler_view = findViewById<RecyclerView>(R.id.rv_forms)
@@ -188,7 +181,11 @@ class FormsActivity : AppCompatActivity() {
     }
 
     fun showOpcionesFragment() {
-
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        val fragment = opcionesFragment()
+        transaction.add(R.id.fragment_container, fragment)
+        transaction.commit()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

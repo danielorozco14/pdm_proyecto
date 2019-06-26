@@ -2,8 +2,10 @@ package com.example.besafe
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.animation.AnimationUtils
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class BeSafe : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +23,7 @@ class BeSafe : AppCompatActivity() {
 
 
         boton_enviar.setOnClickListener {
+            boton_enviar.startAnimation(AnimationUtils.loadAnimation(this,R.anim.fadein))
             var test:Map<String,Any> = mapOf(("word" to "Hola"))
             //val myMap = mapOf<String,Object>("word" to test)
             palabra.add(test)

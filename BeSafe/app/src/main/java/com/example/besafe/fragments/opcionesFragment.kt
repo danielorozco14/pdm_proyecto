@@ -23,7 +23,7 @@ class opcionesFragment : Fragment() {
         fun newInstance() :opcionesFragment = opcionesFragment()
     }
 
-    private lateinit var Adapter :FirestoreUsersAdapter
+   // private lateinit var Adapter :FirestoreUsersAdapter
     var db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
@@ -37,8 +37,8 @@ class opcionesFragment : Fragment() {
             .setQuery(query, Users::class.java)
             .build()
         //adapter = UsersFirestoreRecyclerAdapter(options)
-        Adapter = FirestoreUsersAdapter(options)
-        recyclerView.adapter=Adapter
+        //Adapter = FirestoreUsersAdapter(options)
+        //recyclerView.adapter=Adapter
 
         Log.d("FIRESTORE","SE CREO EL FRAGMENTO")
         return view
@@ -48,13 +48,13 @@ class opcionesFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        Adapter.startListening()
+        //Adapter.startListening()
     }
 
     override fun onStop() {
         super.onStop()
-        if(Adapter != null) {
+       /** if(Adapter != null) {
             Adapter.stopListening()
-        }
+        }**/
     }
 }

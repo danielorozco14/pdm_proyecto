@@ -46,17 +46,16 @@ class FormsActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        setContentView(R.layout.opciones_fragment)
+        setContentView(R.layout.activity_forms)
+        setSupportActionBar(maintoolbar as Toolbar?)
+        //setContentView(R.layout.opciones_fragment)
 
         showOpcionesFragment()
 
 
-        setContentView(R.layout.activity_forms)
-        setSupportActionBar(maintoolbar as Toolbar?)
 
         addInfo()
-
+        /**
         var recycler_view = findViewById<RecyclerView>(R.id.rv_forms)
 
 
@@ -67,7 +66,7 @@ class FormsActivity : AppCompatActivity() {
         adapter = FirestoreUsersAdapter(options)
         recycler_view.adapter = adapter
 
-
+        **/
         var uidtoken = mAuth.currentUser?.uid.toString()
 
         val formQ = FormQ(uidtoken, 10)
@@ -109,20 +108,13 @@ class FormsActivity : AppCompatActivity() {
 
     override fun onStop() {
         super.onStop()
-       // if (adapter != null) {
-         //   adapter!!.stopListening()
-        //}
+        /**if (adapter != null) {
+          adapter!!.stopListening()
+       }**/
     }
 
     fun addInfo() {
-<<<<<<< HEAD
-=======
         cont++
-
-        fun addInfo() {
->>>>>>> 34498980cc7f3356a74d23857c400951f7b1741e
-
-
        val user = hashMapOf(
             "first" to "James",
             "last" to "Bond",
@@ -210,7 +202,7 @@ class FormsActivity : AppCompatActivity() {
         if (item != null) {
             when (item.itemId) {
                 R.id.borrar -> Toast.makeText(this, "borrar", Toast.LENGTH_LONG).show()
-                R.id.logout -> {
+                R.id.Logout -> {
                     mAuth.signOut()
                     startActivity(Intent(this, MainActivity::class.java))
                 }

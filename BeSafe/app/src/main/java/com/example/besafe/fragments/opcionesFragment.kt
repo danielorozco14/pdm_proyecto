@@ -23,24 +23,28 @@ class opcionesFragment : Fragment() {
         fun newInstance() :opcionesFragment = opcionesFragment()
     }
 
-   // private lateinit var Adapter :FirestoreUsersAdapter
+   private lateinit var Adapter :FirestoreUsersAdapter
     var db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         val view= inflater.inflate(R.layout.opciones_fragment, container, false)
 
 
-        var recyclerView= view.findViewById<RecyclerView>(R.id.rv_fragmentOptions)
+       /** var recyclerView= view.findViewById<RecyclerView>(R.id.rv_fragmentOptions)
+        recyclerView.setHasFixedSize(true)
+
         recyclerView.layoutManager = LinearLayoutManager(context)
         val query = db.collection("users").orderBy("born", Query.Direction.DESCENDING)
         val options = FirestoreRecyclerOptions.Builder<Users>()
             .setQuery(query, Users::class.java)
             .build()
         //adapter = UsersFirestoreRecyclerAdapter(options)
-        //Adapter = FirestoreUsersAdapter(options)
-        //recyclerView.adapter=Adapter
+        Adapter = FirestoreUsersAdapter(options)
+        Adapter.notifyDataSetChanged()
+        recyclerView.adapter=Adapter
 
-        Log.d("FIRESTORE","SE CREO EL FRAGMENTO")
+        Log.d("FIRESTORE","SE CREO EL FRAGMENTO")**/
+        Log.e("FIRESTORE","SE CREO EL FRAGMENTO")
         return view
     }
 

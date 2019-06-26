@@ -36,8 +36,9 @@ class FormsActivity : AppCompatActivity() {
     var db = FirebaseFirestore.getInstance()
 
 
-    var cont=0 //CONTADOR QUE SIRVE PARA INDEXAR EL DOCUMENTO, NOS SERA MAS FACIL OBTENER UN DOCUMENTO ESPECIFICO SI SABEMOS QUE NUMERO TIENE AL FINAL
-    var aux=loadInfo();
+    var cont =
+        0 //CONTADOR QUE SIRVE PARA INDEXAR EL DOCUMENTO, NOS SERA MAS FACIL OBTENER UN DOCUMENTO ESPECIFICO SI SABEMOS QUE NUMERO TIENE AL FINAL
+    var aux = loadInfo();
     //private var adapter :UsersFirestoreRecyclerAdapter?=null
     lateinit var adapter: FirestoreUsersAdapter
 
@@ -50,8 +51,11 @@ class FormsActivity : AppCompatActivity() {
         setSupportActionBar(maintoolbar as Toolbar?)
         //setContentView(R.layout.opciones_fragment)
 
-        showOpcionesFragment()
-
+        val fragmentManager = supportFragmentManager
+        val transaction = fragmentManager.beginTransaction()
+        val fragment = opcionesFragment()
+        transaction.add(R.id.fragment_container, fragment)
+        transaction.commit()
 
 
         addInfo()
@@ -66,7 +70,7 @@ class FormsActivity : AppCompatActivity() {
         adapter = FirestoreUsersAdapter(options)
         recycler_view.adapter = adapter
 
-        **/
+         **/
         var uidtoken = mAuth.currentUser?.uid.toString()
 
         val formQ = FormQ(uidtoken, 10)
@@ -96,9 +100,6 @@ class FormsActivity : AppCompatActivity() {
     }
 
 
-
-
-
     override fun onStart() {
         super.onStart()
         //loadRealTimeInfo()
@@ -109,14 +110,15 @@ class FormsActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         /**if (adapter != null) {
-          adapter!!.stopListening()
-       }**/
+        adapter!!.stopListening()
+        }**/
     }
 
     fun addInfo() {
         cont++
-       val user = hashMapOf(
+        val user = hashMapOf(
             "first" to "James",
+
             "last" to "Bond",
             "born" to 1957
         )
@@ -134,37 +136,37 @@ class FormsActivity : AppCompatActivity() {
             }
     }
 
-    fun loadInfo() :Int {
+    fun loadInfo(): Int {
         /**
         var mDocRef = db.document("users/persona_1")
         mDocRef.get().addOnCompleteListener(OnCompleteListener<DocumentSnapshot> { task ->
-            if (task.isSuccessful) {
-                val document = task.result
-                if (document != null) {
-                    var first = document.getString("first") + "\n" +
-                            document.getString("last") + "\n" + document.get("born")
-                    var text_Test = findViewById<TextView>(R.id.text_Test1)
-                    text_Test.text = first
-                } else {
-                    Log.d(TAG, "No existe el documento")
-                }
-            } else {
-                Log.d(TAG, "Hubo fallo en ", task.exception)
-            }
+        if (task.isSuccessful) {
+        val document = task.result
+        if (document != null) {
+        var first = document.getString("first") + "\n" +
+        document.getString("last") + "\n" + document.get("born")
+        var text_Test = findViewById<TextView>(R.id.text_Test1)
+        text_Test.text = first
+        } else {
+        Log.d(TAG, "No existe el documento")
+        }
+        } else {
+        Log.d(TAG, "Hubo fallo en ", task.exception)
+        }
         })**/
 
 
         db.collection("users")
             .get()
-            .addOnCompleteListener (OnCompleteListener<QuerySnapshot>{
-                if(it.isSuccessful){
-                    for (doc:DocumentSnapshot in it.result!!){
-                        Log.d(TAG,"ESTA WEA NO CUENTA"+doc.id)
-                       aux= cont++
-                        Log.d(TAG,"VALOR DE CONTADOR EN LOAD INFO"+cont.toString())
+            .addOnCompleteListener(OnCompleteListener<QuerySnapshot> {
+                if (it.isSuccessful) {
+                    for (doc: DocumentSnapshot in it.result!!) {
+                        Log.d(TAG, "ESTA WEA NO CUENTA" + doc.id)
+                        aux = cont++
+                        Log.d(TAG, "VALOR DE CONTADOR EN LOAD INFO" + cont.toString())
                     }
-                }else{
-                    Log.d(TAG,"Error obteniendo documentos"+it.exception)
+                } else {
+                    Log.d(TAG, "Error obteniendo documentos" + it.exception)
                 }
             })
         return aux;
@@ -185,11 +187,8 @@ class FormsActivity : AppCompatActivity() {
         })
     }
 
-    fun showOpcionesFragment(){
-        val transaction =  supportFragmentManager.beginTransaction()
-        val fragment = opcionesFragment()
-        transaction.add(fragment,"FRAGMENT1")
-            .commit()
+    fun showOpcionesFragment() {
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
